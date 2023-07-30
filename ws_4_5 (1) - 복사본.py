@@ -228,7 +228,7 @@ user_data = [
     {
         'blood_group': 'A+',
         'company': 'Elliott, Mullins and Michael',
-        'mail': 'smithedward@hotmail.com',
+        'mail': 'smithedwardhotmail.com',
         'name': 'Robert Brown',
         'website': ['http://montgomery-rogers.biz/', 'http://www.williams-nixon.com/'],
     },
@@ -240,10 +240,10 @@ user_data = [
         'website': ['http://jackson-harris.com/'],
     },
     {
-        'blood_group': 'A+',
+        'blood_group': '',
         'company': 'Mccoy-Hopkins',
         'mail': 'lli@yahoo.com',
-        'name': 'Michael Clark',
+        'name': 'M Clark',
         'website': [
             'https://www.harding.info/',
             'https://www.jones.biz/',
@@ -262,7 +262,7 @@ user_data = [
         'blood_group': 'AB-',
         'company': 'Villarreal, Wood and Smith',
         'mail': 'denise73@yahoo.com',
-        'name': 'Kevin Blevins',
+        'name': 's',
         'website': [
             'http://www.ramirez.info/',
             'https://mckay.net/',
@@ -281,54 +281,71 @@ user_data = [
         ],
     },
 ]
+def creat_user(user_data):
+    count = 0
+    user_list = []
+    list22 = {}
+    for data in user_data:
+        if is_validation(data) == 'blocked':
+            count += 1
+            continue
+        elif is_validation(data)[0] is False:
+            count += 1
+            list22 = {'blood_group': data['blood_group'],
+                      'company':data['company'],
+                      'mail':data['mail'],
+                      'name':data['name'],
+                      'website':data['website']
+                      }
+            data22 = is_validation(data)[1]
+            print(data22)
+            for k, v in list22.items():
+                if v == data22:
+                    list22[k] = None
+                    
+            user_list.append(list22)
+        elif is_validation(data)[0] is True:
+            list22 = {'blood_group': data['blood_group'],
+                      'company':data['company'],
+                      'mail':data['mail'],
+                      'name':data['name'],
+                      'website':data['website']
+                      }
+            user_list.append(list22)       
+    print(f"'잘못된 데이터로 구성된 유저의 수는 {count}입니다.'")
+    return user_list
+
+def is_validation(user_data):
+    check = (True, )
+    list33 =[]
+    if user_data['company'] in black_list:
+        return 'blocked'
+    if user_data['blood_group'] not in blood_types:
+        check = (False, user_data['blood_group'])
+        list33.append(user_data['blood_group'])
+        return check
+    if '@' not in user_data['mail'] :
+        if check[0] is False:
+            list33.append(user_data['mail'])
+            check = (False, list33)
+        check = (False, user_data['mail'])
+        pass
+    if len(user_data['name']) < 2 or len(user_data['name']) > 30:
+        if check[0] is False:
+            list33.append(user_data['name'])
+            check = (False, list33)
+        check = (False, user_data['name'])
+        pass
+    if len(user_data['website']) < 1:
+        if check[0] is False:
+            list33.append(user_data['website'])
+            check = (False, list33)
+        check = (False, user_data['website'])
+        pass
+    return check
+
+from pprint import pprint as print
 
 blood_types = ['A-', 'A+', 'B-', 'B+', 'O-', 'O+', 'AB-', 'AB+']
 black_list = ['Jenkins-Garcia', 'Stephens Group', 'White, Andrade and Howard', 'Warren-Stewart']
-
-def create_user(user_data):
-    user_list = []
-    total_man = 0
-    
-    for data in user_data:
-        result = is_validation(data)
-        if result[0] is False:
-            total_man += 1
-            for no_data in result[1]:
-                data[no_data] = None
-        elif result == 'blocked':
-            total_man += 1
-            continue
-            pass
-        user_list.append(data)
-    print(f'잘못된 데이터로 구성된 유저의 수는 {total_man}입니다.')
-    return user_list
-
-def is_validation(data):
-    if data['company'] in black_list:
-        return 'blocked'
-    check = True
-    wrong_data = []
-    #blood 값 포함하는지
-    if data['blood_group'] not in blood_types:
-        check = False
-        wrong_data.append(data['blood_group'])
-    #company 값 포함하는지
-    #mail 값 포함하는지
-    if '@' not in data['mail']:
-        check = False
-        wrong_data.append(data['mail'])
-        pass 
-    #name 값 포함하는지
-    if len(data['name']) <2 or len(data['name'])>= 31:
-        check = False
-        wrong_data.append(data['name'])
-        pass
-    #website 값 포함하는지
-    if (len(data['website'])) == 0:
-        check = False
-        wrong_data.append(data['website'])
-        pass 
-    return check, wrong_data
-
-from pprint import pprint 
-list(map(pprint, create_user(user_data)))
+list(map(print, creat_user(user_data)))

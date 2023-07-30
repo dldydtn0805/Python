@@ -4,9 +4,7 @@ def create_user(dummy_data):
     censored_user_list = {}
     for data in dummy_data:
         if censorship(data) is True:
-            censored_user_list = {'company' : dummy_data['company'],
-                           'name' : [dummy_data['name']]
-    }
+            censored_user_list[data['name']] = data['company'] #딕셔너리에 키를 내가 문자열로 넣는것 뿐만 아니라 순회하는 요소의 키를 변수로 넣는걸 생각하지 못했다   
     return censored_user_list
 
 def censorship(data):
@@ -18,7 +16,7 @@ def censorship(data):
         return True
 
 import requests
-from pprint import pprint as print
+# from pprint import pprint as print
 
 dummy_data = []
 
@@ -39,5 +37,4 @@ for i in range(1,11):
     parsed_data = response.json()
     new_dict(parsed_data)
 
-# print(dummy_data)
-list(map(create_user,dummy_data))
+print(create_user(dummy_data))

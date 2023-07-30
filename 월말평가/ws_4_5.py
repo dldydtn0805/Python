@@ -12,15 +12,12 @@ user_data = [
         ],
     },
     {
-        'blood_group': 'AB+',
+        'blood_group': 'aaa',
         'company': 'Fleming Ltd',
         'mail': 'patricianelson@yahoo.com',
-        'name': 'Angel Williamson',
+        'name': '',
         'website': [
-            'https://wilson-johnson.com/',
-            'https://santiago-hammond.com/',
-            'https://morales.com/',
-            'https://fry-fleming.com/',
+            
         ],
     },
     {
@@ -255,18 +252,16 @@ user_data = [
         'blood_group': 'O+',
         'company': 'Kerr Ltd',
         'mail': 'georgebrittany@yahoo.com',
-        'name': 'Brandon White',
+        'name': 'B',
         'website': ['https://flowers-parker.info/', 'http://oliver-rice.info/'],
     },
     {
         'blood_group': 'AB-',
         'company': 'Villarreal, Wood and Smith',
-        'mail': 'denise73@yahoo.com',
-        'name': 'Kevin Blevins',
+        'mail': 'denise73yahoo.com',
+        'name': 'K',
         'website': [
-            'http://www.ramirez.info/',
-            'https://mckay.net/',
-            'http://duran.com/',
+            
         ],
     },
     {
@@ -285,50 +280,68 @@ user_data = [
 blood_types = ['A-', 'A+', 'B-', 'B+', 'O-', 'O+', 'AB-', 'AB+']
 black_list = ['Jenkins-Garcia', 'Stephens Group', 'White, Andrade and Howard', 'Warren-Stewart']
 
+import pprint
 def create_user(user_data):
+    count = 0
     user_list = []
-    total_man = 0
-    
     for data in user_data:
-        result = is_validation(data)
-        if result[0] is False:
-            total_man += 1
-            for no_data in result[1]:
-                data[no_data] = None
-        elif result == 'blocked':
-            total_man += 1
+        dict22 = {}
+        if is_validattion(data) == 'blocked':
+            count += 1
             continue
+
+        elif is_validattion(data)[0] is False:
+            print(is_validattion(data))
+            count += 1
+            dict22['blood_group'] = data['blood_group']
+            dict22['company'] = data['company']
+            dict22['mail'] = data['mail']
+            dict22['name'] = data['name']
+            dict22['website'] = data['website']
+            xx = is_validattion(data)[1]
+            for nono in dict22:
+                if nono in xx:
+                    dict22[nono] = None
+            user_list.append(dict22)
+
+        elif is_validattion(data)[0] is True:
+            dict22['blood_group'] = data['blood_group']
+            dict22['company'] = data['company']
+            dict22['mail'] = data['mail']
+            dict22['name'] = data['name']
+            dict22['website'] = data['website']
+            user_list.append(dict22)
             pass
-        user_list.append(data)
-    print(f'잘못된 데이터로 구성된 유저의 수는 {total_man}입니다.')
+    print(f'잘못된 데이터로 구성된 유저의 수는 {count}입니다.')
     return user_list
-
-def is_validation(data):
-    if data['company'] in black_list:
+def is_validattion(user_data):
+    check = True, 
+    data22 = []
+    if user_data['company'] in black_list:
         return 'blocked'
-    check = True
-    wrong_data = []
-    #blood 값 포함하는지
-    if data['blood_group'] not in blood_types:
-        check = False
-        wrong_data.append(data['blood_group'])
-    #company 값 포함하는지
-    #mail 값 포함하는지
-    if '@' not in data['mail']:
-        check = False
-        wrong_data.append(data['mail'])
-        pass 
-    #name 값 포함하는지
-    if len(data['name']) <2 or len(data['name'])>= 31:
-        check = False
-        wrong_data.append(data['name'])
-        pass
-    #website 값 포함하는지
-    if (len(data['website'])) == 0:
-        check = False
-        wrong_data.append(data['website'])
-        pass 
-    return check, wrong_data
+    if user_data['blood_group'] not in blood_types:
+        check = False, 'blood_group'
+        if check[0] == False:
+            data22.append('blood_group')
+    if '@' not in user_data['mail']: 
+        if check[0] == False:
+            data22.append('mail')
+            check = False, data22
+        else:
+            check = False, 'mail'
+    if len(user_data['name']) < 2 or len(user_data['name']) > 30: 
+        if check[0] == False:
+            data22.append('name')
+            check = False, data22
+        else:
+            check = False, 'name'
+    if len(user_data['website']) < 1:
+        if check[0] == False:
+            data22.append('website')
+            check = False, data22
+        else:
+            check = False, 'website'
+    return check
 
-from pprint import pprint 
-list(map(pprint, create_user(user_data)))
+list(map(pprint.pprint, create_user(user_data)))
+
