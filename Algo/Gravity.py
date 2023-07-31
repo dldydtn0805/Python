@@ -1,17 +1,15 @@
 T = int(input())
 for i in range(T):
     n = int(input())
-    arr22 = list(map(int, input().split()))
-    count22 = 0
-    for l in arr22:
-        count22 += 1
+    arr = list(map(int, input().split()))
+    max_v = 0
+    check = 0
+    check22 = 0
     for j in range(n):
-        max22 = 0
-        count33 = 0
-        for zz in range(count22):
-            if max22 <= arr22[zz]:
-                max22 = arr22[zz]
-                continue
-            else:
-                count33 += 1
-    print(count33)
+        check = 0
+        for k in range(j, n):
+            if arr[j] > arr[k]:
+                check += 1
+        if check > check22:
+            check22 = check
+    print(f'#{i+1}', check22)
