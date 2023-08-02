@@ -1,6 +1,7 @@
 t = int(input())
 
 for tc in range(1, t+1):
+#숫자를 입력받는다
     number = int(input())
     c = [0]*12
     for i in range(6):
