@@ -24,12 +24,13 @@ for tc in range(1,11):
             #만약 조사대상의 양옆이 나와 크기가 같은 경우가 한번이라도 있으면
             #조사할 필요가 없다
             elif arr[i] <= arr[j]:
+                tmp = 0
                 break
 
             #break문으로 종료되지 않았다면, (더이상 조사할 필요가 없는 경우가 없었다면)
             #정상적으로 모두 조사가 끝났다.
 
-            else:
+
                 #i번째 위치 건물의 조망권 크기 더하기
-                result += tmp
+        result += tmp
     print(result)
