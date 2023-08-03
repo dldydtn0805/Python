@@ -23,20 +23,20 @@ for tc in range(1, T+1):
     #파리 맵 순회
     for i in range(N):
         for j in range(N):
-            total = arr[i][j]
             # 한번에 잡을 수 있는 총 파리 개수를 total 로 선언하고,
             # 기준 인덱스의 파리 개수를 total 에 할당
+            total = arr[i][j]
+            # 기준 인덱스에서 파리채 모양으로 탐색
+            # 반복문 안에서 파리채 크기 M 만큼 곱해주면서 파리채 모양을 만든다
             for k in range(3):
-                # 기준 인덱스에서 파리채 모양으로 탐색
-                # 반복문 안에서 파리채 크기 M 만큼 곱해주면서 파리채 모양을 만든다
-                for p in range(M-1):
-                    idx_di = i+di[k]*p
-                    idx_dj = j+di[k]*p
+                for p in range(1, M):
+                    ni = i+di[k]*p
+                    nj = j+di[k]*p
                     # total 에 해당 인덱스 더한다
-                    if 0 <= idx_di < N and 0 <= idx_dj < N:
-                        total += arr[idx_di][idx_dj]
+                    if 0 <= ni < N and 0 <= nj < N:
+                        total += arr[ni][nj]
                     # 한번에 잡을 수 있는 총 파리의 개수의 최대값을 구한다
 
-                    print(total)
-            # max_total = max_v(total, max_total)
+
+            max_total = max_v(total, max_total)
     print(f'{tc}', max_total)
