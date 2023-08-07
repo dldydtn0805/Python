@@ -14,14 +14,17 @@ T = int(input())
 for tc in range(1, T+1):
     str1 = list(input())
     str2 = list(input())
-    cnt = 0
     dic = {}
-    for s in str1:
-        dic[s] = 0
+    # str1과 str2를 순회하면서,
+    for s1 in str1:
+        dic[s1] = 0
         max_cnt = 0
+        # s1과 s2가 같을때 s1을 키로한 딕셔너리의 값을 올린다
         for s2 in str2:
-            if s == s2:
-                dic[s] += 1
+            if s1 == s2:
+                dic[s1] += 1
+    # 최대 키 값을 찾는다
     max_v = 0
     for k, v in dic.items():
-        max_v =
+        max_v = max(max_v, v)
+    print(f'#{tc}', max_v)
