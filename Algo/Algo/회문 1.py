@@ -23,37 +23,40 @@ ABA도 회문이며, ABBA도 회문이다. A 또한 길이 1짜리 회문이다.
 #부호와 함께 테스트 케이스의 번호를 출력하고, 공백 문자 후 찾은 회문의 개수를 출력한다.
 
 """
-import pprint
 import sys
 sys.stdin = open('input.txt')
 
 for tc in range(1, 11):
     n = int(input())
     arr = [list(input()) for _ in range(8)]
-    arr_case = []
+    new_arr = []
+    cnt = 0
 
-    # 왼쪽끝에서 N까지
+    #가로 배열 탐색
     for i in range(8):
-        check = 1
-        word = ''
-        for j in range(8):
-            if 0<= n-1-j < 8:
-                if arr[i][j] != arr[i][n-1-j]:
-                    check = 0
-                elif arr[i][j] == arr[i][n-1-j]:
-                    word += arr[i][j]
-        if len(word) == n:
-            arr_case.append(word)
-    #오른쪽 끝에서 N까지
+        # 가로 전체 8에서 단어 길이 n을 빼준다
+        for j in range(8-n+1):
+            word = ''
+            # 기준 인덱스에서 가로로 1,2,3,..,n번 까지 단어를 합쳐준다
+            for k in range(n):
+                word += arr[i][j+k]
+            # 역단어 만들고 비교해서 같으면 카운트 1 증가
+            re_word = word[::-1]
+            if word == re_word:
+                cnt += 1
+
+    # 세로 배열 탐색
     for i in range(8):
-        check = 1
-        word = ''
-        for j in range(8):
-            if 0<= 8-n+j < 8 and 0<= 8-1-j < 8:
-                if arr[i][8-n+j] != arr[i][8-1-j]:
-                    check = 0
-                if arr[i][8-n+j] == arr[i][8-1-j]:
-                    word += arr[i][8-n+j]
-        if len(word) == n:
-            arr_case.append(word)
-    print(tc, arr_case)
+        # 세로 전체 8에서 단어 길이 n을 빼준다
+        for j in range(8-n+1):
+            word = ''
+            # 기준 인덱스에서 세로로 1,2,3,...,n번 까지 단어를 합쳐준다
+            for k in range(n):
+                word += arr[j+k][i]
+            # 역단어 비교 같으면 1 증가
+            re_word = word[::-1]
+            if word == re_word:
+                cnt += 1
+    print(f'#{tc}', cnt)
+
+
