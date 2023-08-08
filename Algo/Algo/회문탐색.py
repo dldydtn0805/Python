@@ -5,8 +5,8 @@ ABBA처럼 어느 방향에서 읽어도 같은 문자열을 회문이라 한다
 
 """
 
-# import sys
-# sys.stdin = open('input.txt')
+import sys
+sys.stdin = open('input.txt')
 
 T = int(input())
 for tc in range(1, T+1):
