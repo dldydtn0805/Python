@@ -41,6 +41,16 @@ for tc in range(1, 11):
             re_word = word[::-1]
             if word == re_word:
                 cnt += 1
+    # print(cnt)
+
+    for i in range(8-n):
+        for j in range(8):
+            word = ''
+            for k in range(n):
+                word += arr[j][i+k]
+            re_word = word[::-1]
+            if word == re_word:
+                cnt += 1
     print(cnt)
 
 
