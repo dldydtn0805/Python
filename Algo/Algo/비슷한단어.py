@@ -18,7 +18,7 @@ for word in words[1:]:
             temp += 1
             cnt += 1
             if temp > 1:
-                now == 0
+                now = 0
     for element in word:
         # 기준단어와 다른 낱말이 1번 발견되면 경고 더 발견되면 퇴장
         temp = 0
@@ -26,7 +26,7 @@ for word in words[1:]:
             temp += 1
             cnt += 1
             if temp > 1:
-                now == 0
+                now = 0
     # 두 단어의 차이가 1보다 크다면 퇴장
     if abs(len(main) - len(word)) > 1:
         now = 0
