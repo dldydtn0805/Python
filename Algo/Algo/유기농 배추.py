@@ -15,6 +15,8 @@ def dfs():
                 # 벌레 카운트 방문처리
                 cnt += 1
                 visited[i][j] = 1
+                # 내가 자꾸 제출 틀린 이유 = 자기 자신을 스택에 안넣음
+                stack.append((i, j))
                 while True:
                     for k in range(4):
                         ni = i + di[k]
@@ -24,14 +26,16 @@ def dfs():
                             if baechu[ni][nj] == 1 and visited[ni][nj] == 0:
                                 visited[ni][nj] = 1
                                 stack.append((ni, nj))
-                    # 인접한 배추로 이동
+                        # 인접한 배추로 이동
                     if len(stack)>0:
                         i, j = stack.pop()
 
-                    # 다 전염 시켰으면 다음 배추로 넘어가기
+                        # 다 전염 시켰으면 다음 배추로 넘어가기
                     else:
                         break
+
     return cnt
+
 
 
 

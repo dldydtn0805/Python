@@ -20,23 +20,41 @@ for tc in range(1, T + 1):
     # n = 사람,  m = 시간, k = 붕어빵
     n, m, k = map(int, input().split())
     waiting = list(map(int, input().split()))
+    # 붕어
     queue = []
     flag = True
-    # 시간 다 지났을때
     cnt = 1
+    # 웨이팅이 존재하는동안 반복
     while waiting:
-        # 붕어빵 k개 까지 채워넣기
+        # 만약 굽기 전에 도착한 사람이 있다면 ?
+        for i in waiting:
+            # 만약 먼저온 사람이 있으면 ?
+            if i < m*cnt:
+            # 붕어빵이 있다면 Fail
+                if not queue:
+                    flag = False
+            # 붕어빵이 있다면 배급
+                else:
+                    # 웨이팅 제거, 붕어빵 1개 out
+                    waiting.remove(i)
+                    queue.pop()
+        # 붕어빵 k개 채워넣기
         for _ in range(k):
             queue.append(1)
+        # 구워지고 난 다음 온 사람들
         for i in waiting:
-            # 만약 먼저온 사람이 있으면 flag = False
-            if i < m*cnt:
-                waiting.remove(i)
-                flag = False
-            # 만들어 진 후에 도착하고 붕어빵 있다면
-            elif m*cnt <= i and queue:
-                waiting.remove(i)
-                queue.pop()
+            if m*cnt <= i < m*(cnt+1):
+                # 붕어빵이 없다면 사고임
+                if not queue:
+                    flag = False
+                # 붕어빵이 있다면 배급
+                else:
+                    waiting.remove(i)
+                    queue.pop()
+        # 다음번 붕어빵으로 넘어가기
         cnt += 1
-    print(tc, flag)
+    if flag:
+        print(f'#{tc}', 'Possible')
+    else:
+        print(f'#{tc}', 'Impossible')
 
