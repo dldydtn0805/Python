@@ -21,7 +21,7 @@ while True:
             ni = i + di[k]
             nj = j + dj[k]
             if 0<=ni<n and 0<=nj<n:
-                # # 만약 갱신할 루피가 더 작거나 같을때만 방문한다
+                # # 만약 갱신할 루피가 더 작을때만 방문한다
                 if visited[ni][nj] > visited[i][j] + lupy[ni][nj]:
                     visited[ni][nj] = visited[i][j] + lupy[ni][nj]
                     queue.append((ni, nj))
