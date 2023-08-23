@@ -1,11 +1,28 @@
+
 import sys
 sys.stdin = open('input.txt')
+# 재귀 제한 해제
+sys.setrecursionlimit(10**9)
 
-def preorder(n):
-    if n:
-        temp.append(n)
-        preorder(c1[n])
-        preorder(c2[n])
+def postorder(root, end):
+    if root > end:
+        return
+
+    # 만약 root 보다 큰값이 없는 경우 전부 왼쪽 서브트리로 취급
+    start = end + 1
+
+    for i in range(root+1, end+1):
+        if value[root] < value[i]:
+            start = i
+            break
+
+    # 후위 순회
+    # 루트 다음부터 왼쪽 서브트리 탐색
+    postorder(root +1, start-1)
+    # 왼쪽 서브트리 탐색 끝나면 오른쪽 서브트리 탐색
+    postorder(start, end)
+    # 왼쪽, 오른쪽 서브트리 탐색 끝나면 root 출력
+    print(value[root])
 
 value = []
 
@@ -16,22 +33,8 @@ while True:
     except:
         break
 
-temp = []
-vl = len(value)
-c1 = [0] * len(value)
-c2 = [0] * len(value)
-middle = value[0]
-min_v = min(value)
-max_v = max(value)
-minturn = value.index(min_v)
-maxturn = value.index(max_v)
+postorder(0, len(value)-1)
 
-for i in range(len(value)):
-    if 0 < i <= minturn:
-        c1[i] = i-1
-    elif minturn<i<maxturn:
-        c2[i-2] = i
-
-
-print(c1)
-print(c2)
+"""
+https://storing.tistory.com/48
+"""

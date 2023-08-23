@@ -32,4 +32,4 @@ for tc in range(1, T + 1):
                         cut2 += paris[ni][nj]
             max_cut2 = max(cut2, max_cut2)
 
-    print(max(max_cut, max_cut2))
+    print(f'#{tc}', max(max_cut, max_cut2))
