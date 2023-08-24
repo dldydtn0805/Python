@@ -25,7 +25,6 @@ def postorder(root, end):
     print(value[root])
 
 value = []
-
 while True:
     try:
         n = int(input())
