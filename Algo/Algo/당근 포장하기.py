@@ -75,9 +75,9 @@ for tc in range(1,T+1):
         s.append(value[0][1])
         value.pop(0)
 
-    print(l)
-    print(m)
-    print(s)
+    # print(l)
+    # print(m)
+    # print(s)
 
     if s and m and l and not value:
         if len(s) <= n//2 and len(m) <= n//2 and len(l) <= n//2:
