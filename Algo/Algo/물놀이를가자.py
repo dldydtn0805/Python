@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+# sys.stdin = open('input.txt')
 sys.setrecursionlimit(10**6)
 from collections import deque
 def bfs():
@@ -8,12 +8,11 @@ def bfs():
         for k in range(4):
             ni = a + di[k]
             nj = b + dj[k]
-            if ni < 0 or ni >= n or nj < 0 or nj >= m:
-                continue
-            if visited[ni][nj] != -1:
-                continue
-            queue.append((ni,nj))
-            visited[ni][nj] = visited[a][b] + 1
+            if 0<= ni <n and 0<=nj<m:
+                if visited[ni][nj] == -1:
+                    queue.append((ni,nj))
+                    # 선입 선출이므로 해당 자리에 들어갈 수 있는 가장 높은 안전 거리 값이 작성된다
+                    visited[ni][nj] = visited[a][b] + 1
 
 
 T = int(input())
