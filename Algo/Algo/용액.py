@@ -1,13 +1,19 @@
 import sys
 import heapq
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-
 n = int(input())
-water = list(map(int, input().split()))
-a, b = 0, 0
-min_v = 1e9
+arr = list(map(int, input().split()))
 
-def binary(start, end):
-    mid = (start + end-1) // 2
-    if min_v > water[mid]
+min_v = 1e9
+for i in range(n-1):
+    current = arr[i]
+
+    start = i + 1
+    end = n-1
+
+    while start <= end:
+        mid = (start+end) //2
+        temp = current + arr[mid]
+
