@@ -1,47 +1,43 @@
-from collections import deque
 import sys
-import itertools
+# sys.stdin = open('input.txt')
 
-sys.stdin = open('input.txt')
+# 괄호가 제대로 되어있는지 판단하는 함수
+def check(G):
+    stack = []
+    for g in G:
+        if g == '(':
+            stack.append('(')
+        else:
+            if not stack:
+                return 0
+            if stack:
+                stack.pop()
+    if stack:
+        return 0
+    else:
+        return 1
+
+# 완전 탐색 브루트포스
+def dfs(cnt):
+    # cnt가 n이 됐을때 return을 하는데, 만약 괄호가 정상적이라면 해당 상황을 출력하고 프로그램을 종료한다
+    if cnt == n:
+        if check(G):
+            result = ''.join(G)
+            print(result)
+            exit()
+        return
+    # 주어진 배열의 해당 요소가 고추장이라면, 완전탐색을 위해 해당 요소를 ')'와 '('로 넣어주고 dfs(cnt+1)을 호출
+    if G[cnt] == 'G':
+        for i in range(2):
+            G[cnt] = sets[i]
+            dfs(cnt+1)
+            G[cnt] = 'G'
+    # 고추장이 아니라면, 완전탐색을 위해 dfs(cnt+1)을 호출
+    else:
+        dfs(cnt+1)
 
 n = int(input())
-
 sets = ['(', ')']
-
-data = itertools.permutations(sets,2)
-
-print(data)
 G = list(input())
-f1 = 0
-f2 = 0
-result = []
-for i in G:
-    result = []
-    if i == 'G':
-        result.append('(')
+dfs(0)
 
-stack = []
-for g in G:
-    if g == 'G':
-        if not stack:
-            stack.append('(')
-            f1 += 1
-        else:
-            if stack[-1] == '(':
-                stack.append(')')
-                f1 -= 1
-            elif stack[-1] == ')':
-                if f1 <= 0:
-                    stack.append('(')
-                    f1 += 1
-
-                elif f1 > 0:
-                    stack.append(')')
-                    f1 -= 1
-
-    else:
-        stack.append(g)
-        if g == ')':
-            f1 -= 1
-print(f1)
-print(stack)
