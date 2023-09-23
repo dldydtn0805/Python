@@ -17,7 +17,7 @@ def let_Visited(x, y, arr):
             if x + i >= 10 or y + j >= 10:
                 continue
             visited[x+i][y+j] = 1
-            paper[x+i][y+j] = 0
+            # paper[x+i][y+j] = 0
 
 def return_Visited(x, y, arr):
     for i in range(len(arr)):
@@ -25,23 +25,18 @@ def return_Visited(x, y, arr):
             if x + i >= 10 or y + j >= 10:
                 continue
             visited[x+i][y+j] = 0
-            paper[x+i][y+j] = 1
+            # paper[x+i][y+j] = 1
 
 def bruteForce(cur_i, cur_j, cnt1, cnt2, cnt3, cnt4):
     global max_v
     if cnt1 > 5 or cnt2 > 5 or cnt3 > 5 or cnt4 > 5:
         return
-    total = 0
-    for i in range(10):
-        for j in range(10):
-            total += paper[i][j]
-    # print(cnt1, cnt2, cnt3, cnt4)
-    if total == 0:
+    if visited == paper:
         print(visited)
         print(cnt1, cnt2, cnt3, cnt4)
         return
-    for i in range(10):
-        for j in range(10):
+    for i in range(cur_i, 10):
+        for j in range(cur_j, 10):
             if paper[i][j] == 1:
                 if isOkay(i,j,color1) and not visited[i][j]:
                     let_Visited(i, j, color1)
