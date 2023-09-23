@@ -23,23 +23,32 @@ for _ in range(M):
     graph[S].append((L, E))
     graph[E].append((L, S))
     start_point.append(S)
-
+max_v = 0
+min_v = 1e9
+result = []
 for i in range(N+1):
     visited = [1e9]*(N+1)
     djk(i)
-    for j in range(len(graph[i])):
-        temp = 0
-        # print(visited)
-        # 왼쪽 노드 불붙는 시간
-        x = (graph[i][j])
-        left = visited[i]
-        # 오른쪽 노드 불붙는 시간
-        right = visited[x[1]]
-        cur = x[0]
-        if left > right:
-            temp = left + ((cur - left)/2)
-        elif right > left:
-            temp = right + ((cur - right)/2)
-        elif left == right:
-            temp = cur/2
-        print(temp)
+    max_v = 0
+    for k in range(len(graph)):
+        for j in range(len(graph[k])):
+            temp = 0
+            # 왼쪽 노드 불붙는 시간
+            x = (graph[k][j])
+            left = visited[k]
+            # 오른쪽 노드 불붙는 시간
+            right = visited[x[1]]
+            cur = x[0]
+            if left == 1e9 or right == 1e9:
+                continue
+            if left > right:
+                temp = left + (cur - (left-right)) / 2
+            elif right > left:
+                temp = right + (cur - (left+right)) / 2
+            elif left == right:
+                temp = left + cur / 2
+            max_v = max(max_v, temp)
+    if max_v == 0:
+        continue
+    min_v = min(max_v, min_v)
+print(min_v)
