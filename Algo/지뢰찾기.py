@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+# sys.stdin = open('input.txt')
 
 """
 숫자칸의 정보는 인근 8개 칸에 있는 지뢰의 개수를 알려준다
@@ -21,5 +21,8 @@ for i in range(n):
                 if arr[i+di][j+dj] == '0':
                     flag = False
             if flag:
+                for di, dj in [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]:
+                    if arr[i + di][j + dj] != '#':
+                        arr[i + di][j + dj] = str(int(arr[i + di][j + dj]) - 1)
                 cnt += 1
 print(cnt)
