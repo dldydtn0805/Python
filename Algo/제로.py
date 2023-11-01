@@ -1,6 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
-
+input = sys.stdin.readline
 """
 선언된 숫자가 0인 경우에, 스택이 비어있지 않으면 스택을 하나 팝 해주고
 

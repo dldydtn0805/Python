@@ -4,13 +4,10 @@ input = sys.stdin.readline
 n = int(input())
 arr = list(map(int, input().strip().split()))
 result = []
-temp = 0
-for i in range(n-1, -1, -1):
-    if arr[:i] and max(arr[:i]) > arr[i]:
-        for j in range(i-1, -1, -1):
-            if arr[i] < arr[j]:
-                temp = j+1
-                break
-    result.append(temp)
-    temp = 0
-print(*result[::-1])
+stack = []
+for i in range(n):
+    stack.append((i, arr[i]))
+    while stack:
+        if stack[-1][1] < arr[i]:
+            stack.pop()
+        else:
