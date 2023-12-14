@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt')
 
-def dfs(n, V, adj_m):
+def make_star(n, V, adj_m):
     route = []
     # stack 생성
 
@@ -64,7 +64,7 @@ for tc in range(1, 11):
     for i in range(0, len(arr)-1, 2):
         v1, v2 = arr[i], arr[i+1]
         adj[v1][v2] = 1
-    result = dfs(0, 99, adj)
+    result = make_star(0, 99, adj)
     # if 99 in result:
     #     print(f'#{tc}', 1)
     # else:

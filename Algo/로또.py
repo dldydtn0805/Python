@@ -1,7 +1,7 @@
 import sys
 # sys.stdin = open('input.txt')
 
-def dfs(cnt):
+def make_star(cnt):
     if cnt == 6:
         if set(example) not in sets:
             sets.append(set(example))
@@ -11,7 +11,7 @@ def dfs(cnt):
         if m[i] in example:
             continue
         example[cnt] = m[i]
-        dfs(cnt+1)
+        make_star(cnt+1)
 
 inputs = []
 while True:
@@ -25,5 +25,5 @@ while True:
     m = arr[1:]
     example = [0]*6
     sets = []
-    dfs(0)
+    make_star(0)
     print()

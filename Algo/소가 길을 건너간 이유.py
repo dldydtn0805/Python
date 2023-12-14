@@ -21,7 +21,7 @@ import sys
 sys.setrecursionlimit(10**6)
 sys. stdin = open('input.txt')
 
-def dfs(i, j, temp):
+def make_star(i, j, temp):
     global flag, route
     visited[i][j] = 1
     if i == ei and j == ej:
@@ -35,7 +35,7 @@ def dfs(i, j, temp):
                     t_r1, t_c1, t_r2, t_c2 = t
                     if i == t_r1 and j == t_c1 and ni == t_r2 and nj == t_c2:
                         flag = 1
-                dfs(ni,nj, temp + ' ' + str(ni) + ' ' + str(nj))
+                make_star(ni,nj, temp + ' ' + str(ni) + ' ' + str(nj))
                 visited[ni][nj] = 0
 
 n, k, r = map(int, input().split())
@@ -59,7 +59,7 @@ for target in targets:
     flag = 0
     route = set()
     visited = [[0]*n for _ in range(n)]
-    dfs(si, sj, str(si) + ' ' + str(sj))
+    make_star(si, sj, str(si) + ' ' + str(sj))
     print(flag)
 
 

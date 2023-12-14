@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt')
 
-def dfs():
+def make_star():
     cnt = 0
     # 방문 처리
     visited = [[0]*(M) for _ in range(N)]
@@ -46,4 +46,4 @@ for tc in range(1, T+1):
     for _ in range(K):
         x, y = map(int, input().split())
         baechu[y][x] = 1
-    print(dfs())
+    print(make_star())

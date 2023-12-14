@@ -12,7 +12,7 @@ def bfs(queue, visited):
                         visited[ni][nj] = 1
                         queue.append((ni,nj))
 
-def dfs(cnt):
+def make_star(cnt):
     global max_v
     if cnt == 3:
         queue = deque()
@@ -40,11 +40,11 @@ def dfs(cnt):
         for j in range(m):
             if graph[i][j] == 0:
                 graph[i][j] = 1
-                dfs(cnt+1)
+                make_star(cnt+1)
                 graph[i][j] = 0
 
 n, m = map(int, input().split())
 graph = [list(map(int,input().split())) for _ in range(n)]
 max_v = 0
-dfs(0)
+make_star(0)
 print(max_v)

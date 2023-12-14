@@ -10,9 +10,9 @@ graph = [
     [0,1,0,1,0]
 ]
 
-# DFS
+# make_star
 # stack 버전
-def dfs_stack(start):
+def make_star_stack(start):
     visited = []
     stack = [start]
     while stack:
@@ -38,14 +38,14 @@ def dfs_stack(start):
 
             stack.append(next)
     return visited
-print("dfs stack = ", end= '')
-print(*dfs_stack(0))
+print("make_star stack = ", end= '')
+print(*make_star_stack(0))
 # 재귀
 # map 크기, 길이를 알때 append 형식 말고 아래와 같이 사용하면 빠르다
 visited = [0]*5
 path = [] # 방문 순서 기록
 
-def dfs(now):
+def make_star(now):
     visited[now] = 1 # 현재지점 방문 표시
     #print(now, end=' ')
     path.append(now)
@@ -55,8 +55,8 @@ def dfs(now):
             continue
         if visited[next]:
             continue
-        dfs(next)
+        make_star(next)
 
-print('dfs 재귀 =', end=' ')
-dfs(0)
+print('make_star 재귀 =', end=' ')
+make_star(0)
 print(path)

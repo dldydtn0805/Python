@@ -1,4 +1,4 @@
-def dfs(node):
+def make_star(node):
     global cnt
     stack = []
     visited[node] = 0
@@ -23,6 +23,6 @@ for i in range(N-1):
     graph[b].append(a)
 cnt = 0
 visited = [0] * (N+1)
-dfs(1)
+make_star(1)
 if cnt%2: print('Yes')
 else: print('No')

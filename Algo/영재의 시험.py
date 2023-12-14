@@ -1,7 +1,7 @@
 import sys
 # sys.stdin = open('input.txt')
 
-def dfs(cnt, word):
+def make_star(cnt, word):
     global result, r
     if len(word)>2 and word[len(word)-3] == word[len(word)-1] == word[len(word)-2]:
         return
@@ -14,13 +14,13 @@ def dfs(cnt, word):
             result += 1
         return
     for i in range(5):
-        dfs(cnt+1, word+str(ans[i]))
+        make_star(cnt+1, word+str(ans[i]))
 
 
 arr = list(input().split())
 r = ''.join(arr)
 ans = [i for i in range(1,6)]
 result = 0
-dfs(0,'')
+make_star(0,'')
 
 print(result)

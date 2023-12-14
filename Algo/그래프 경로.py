@@ -2,7 +2,7 @@ import sys
 sys.stdin = open('input.txt')
 
 
-def dfs(n, V, adj_m):
+def make_star(n, V, adj_m):
     arr = []
 
     # stack 생성
@@ -73,7 +73,7 @@ for tc in range(1, T + 1):
 
     s, g = map(int, input().split())
 
-    result = dfs(s, V, adj_m)
+    result = make_star(s, V, adj_m)
 
     # print(s,g, result)
 

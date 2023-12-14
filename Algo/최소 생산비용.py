@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt')
 
-def dfs(cnt):
+def make_star(cnt):
     global sum_v, min_v
 
     if cnt == n:
@@ -16,7 +16,7 @@ def dfs(cnt):
             continue
         P[cnt] = S[i]
         sum_v += F[cnt][S[i]-1]
-        dfs(cnt+1)
+        make_star(cnt+1)
         P[cnt] = 0
         sum_v -= F[cnt][S[i]-1]
 
@@ -28,5 +28,5 @@ for tc in range(1, T+1):
     F = [list(map(int, input().split())) for _ in range(n)]
     min_v = 1e9
     sum_v = 0
-    dfs(0)
+    make_star(0)
     print(f'#{tc}', min_v)

@@ -1,4 +1,4 @@
-def dfs(n, V, adj_m):
+def make_star(n, V, adj_m):
     # stack 생성
 
     stack = []
@@ -70,4 +70,4 @@ for i in range(E):
     adj_m[v2][v1] = 1
 
 print(adj_m)
-dfs(1, V, adj_m)
+make_star(1, V, adj_m)

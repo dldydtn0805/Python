@@ -16,7 +16,7 @@ for _ in range(n - 1):
     adj[b].append((a, c))
 
 
-def dfs(power, room_number, start):
+def make_star(power, room_number, start):
     # 이동이 완료되면 갱신
     ans[start] = room_number
 
@@ -24,7 +24,7 @@ def dfs(power, room_number, start):
         # 다음 노드로 갈 수 있는 에너지를 가지고 있고 and 다음 노드가 더 상단에 위치한다면
         if power >= need and room_value[togo][1] < room_value[room_number][1]:
             # 이동하기
-            dfs(power - need, togo, start)
+            make_star(power - need, togo, start)
 
 
 # bfs로 1번 룸에서 가장 가까운 방들 순서 정해주기.
@@ -53,5 +53,5 @@ room_value = set_room_value_bfs()
 ans = [0] * (n + 1)
 
 for i in range(1, n + 1):
-    dfs(room[i], i, i)
+    make_star(room[i], i, i)
     print(ans[i])

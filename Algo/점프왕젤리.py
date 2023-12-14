@@ -27,7 +27,7 @@ while True:
                 # 스택에 넣어주고 방문 처리
                 stack.append((ni,nj))
                 visited[ni][nj] = 1
-    # DFS 작동
+    # make_star 작동
     if stack:
         i, j = stack.pop()
     else:

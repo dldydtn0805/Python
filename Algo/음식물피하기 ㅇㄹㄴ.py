@@ -2,7 +2,7 @@ import sys
 from collections import deque
 sys.setrecursionlimit(10**9)
 
-def dfs(i,j, cnt):
+def make_star(i,j, cnt):
     global max_v
     visited[i][j] = 0
     if max_v < cnt:
@@ -11,7 +11,7 @@ def dfs(i,j, cnt):
         ni, nj = i + di, j + dj
         if 0<=ni<n and 0<=nj<m:
             if visited[ni][nj] == 1:
-                dfs(ni,nj,cnt+1)
+                make_star(ni,nj,cnt+1)
                 visited[ni][nj] = 1
 
 input = sys.stdin.readline
@@ -25,5 +25,5 @@ for _ in range(k):
 max_v = 0
 while q:
     i, j = q.pop()
-    dfs(i,j,1)
+    make_star(i,j,1)
 print(max_v)
