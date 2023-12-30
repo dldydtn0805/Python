@@ -1,8 +1,11 @@
-const input = require('fs').readFileSync('input.txt').toString().trim().split(' ');
 
+const fs = require('fs');
+const input = fs.readFileSync("input.txt").toString().trim().split(" ");
 let cnt = 0
-for (i of input) {
-    if (i !== '')
-        cnt ++
+for (let i = 0; i < input.length; i++) {
+    if (input[i] !== '') {
+        cnt++
+    }
 }
+console.log(input)
 console.log(cnt)
