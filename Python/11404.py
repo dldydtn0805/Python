@@ -28,4 +28,10 @@ for _ in range(m):
     adjacent_list[a].append([c, b])
 
 for i in range(n):
-    print(*dijkstra(i))
+    res = dijkstra(i)
+    for j in range(len(res)):
+        if res[j] != 1e9:
+            print(res[j], end=' ')
+        else:
+            print(0, end=' ')
+    print()
