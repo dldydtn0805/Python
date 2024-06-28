@@ -37,7 +37,6 @@ for i in range(N):
                 prefix[i][j][1] = prefix[i][j - 1][1] + prefix[i - 1][j][1] - prefix[i - 1][j - 1][1]
                 prefix[i][j][2] = prefix[i][j - 1][2] + prefix[i - 1][j][2] - prefix[i - 1][j - 1][2] + 1
 
-print(prefix)
 for _ in range(K):
     a, b, c, d = map(int, input().split())
     a -= 1
