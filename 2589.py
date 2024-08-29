@@ -30,7 +30,14 @@ max_idx = [0, 0]
 for h in range(H):
     for w in range(W):
         if tres[h][w] == 'L':
-            bfs(h, w)
+            cnt = 0
+            for di, dj in [[1,0],[0,1],[-1,0],[0,-1]]:
+                hi, wj = h + di, w + dj
+                if 0 <= hi < H and 0 <= wj < W:
+                    if tres[hi][wj] == 'L':
+                        cnt += 1
+            if cnt <= 2:
+                bfs(h, w)
 
 max_v[0] -= 1
 
