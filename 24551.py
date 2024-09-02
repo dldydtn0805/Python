@@ -9,22 +9,22 @@ def get_pichulia_numbers(X):
         num = num*10+1
 
     disliked_cnt = 0
-    L = len(disliked)
 
-    for i in range(1, 1<<L):
+    for i in range(1, 1 << len(disliked)):
         lcm = 1
-        bits = bin(i).count('1')
-        for j in range(L):
+        bit_count = 0
+        for j in range(len(disliked)):
             if i & (1 << j):
                 lcm = math.lcm(lcm, disliked[j])
+                bit_count += 1
                 if lcm > X:
                     break
         if lcm > X:
             continue
-        if bits % 2 == 1:
-            disliked_cnt += N // lcm
+        if bit_count % 2 == 1:
+            disliked_cnt += X // lcm
         else:
-            disliked_cnt -= N // lcm
+            disliked_cnt -= X // lcm
 
     return disliked_cnt
 
