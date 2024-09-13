@@ -17,10 +17,7 @@ for elem in arr:
             stack.pop()
             sorted_arr.pop()
         else:
-            if elem == sorted_arr[-1]:
-                sorted_arr.pop()
-            else:
-                stack.append(elem)
+            stack.append(elem)
 
 if stack == sorted_arr:
     print('GOOD')
