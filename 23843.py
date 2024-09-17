@@ -1,14 +1,12 @@
 import sys
 input = sys.stdin.readline
-from collections import deque
-
 N, M = map(int, input().split())
 arr = list(map(int, input().split()))
 arr.sort(reverse=True)
-queue = deque()
+outlet = []
 for i in range(N):
-    if len(queue) < M:
-        queue.append(arr[i])
+    if len(outlet) < M:
+        outlet.append(arr[i])
     else:
-        queue[queue.index(min(queue))] += arr[i]
-print(max(queue))
+        outlet[outlet.index(min(outlet))] += arr[i]
+print(max(outlet))
